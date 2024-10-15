@@ -74,17 +74,27 @@ Format: `help`
 
 ### Adding a patient: `add`
 
-Adds a person to the address book.
+The `add` command allows you to add a patient's details to MediBase3.
 
-Format: `add n/NAME i/NRIC g/GENDER d/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS ​`
+**Format**: `add n/NAME i/NRIC g/GENDER d/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS ​`
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:**
-A person can have any number of tags (including 0)
+<div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
+
+* All fields are compulsory and can be in any order.
+* The NRIC serves as a unique identifier for each patient.
+* A patient will not be added if the NRIC is already associated with another patient in MediBase3.
+* Refer to the [Details of Patient Parameters](#details-of-patient-parameters) for more information on the constraints of each parameter.
+
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+**Result:**
+* A success message will be displayed if the all the input fields are valid and the patient's details will be added to MediBase3.  
+* If any fields provided are invalid, the respective error message for the invalid input field will be displayed.
+* If any input fields are missing, an error message will be displayed to indicate that the command format is invalid, along with the correct command format.
+
+**Examples**:
+* `add n/John Doe i/S1234567A g/M d/2002-12-12 p/98765432 e/johnd@example.com a/Orchard Road, Block 124, #02-01`
+* `add n/Betsy Crowe i/s1234567b g/F e/betsycrowe@example.com a/Bukit Merah, Block 123, #01-01 p/1234567 d/2002-11-10`
 
 ### Listing all persons : `list`
 
@@ -186,7 +196,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
-### Definitions of Common Terms
+### Definitions of Terms
 The table below provides a brief explanation of the terms used in MediBase3 User Guide.
 
 Term | Definition
@@ -196,6 +206,17 @@ GUI | Graphical User Interface(GUI) is a type of interface that allows users to 
 JAR | Java ARchive(JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources into one file for distribution.
 Parameter | A parameter refers to a field that requires input from the user. For example, in the command `delete i/S1234567A`, `i/S1234567A` is a parameter.
 Prefix | A prefix is a keyword that is used to identify the type of parameter that follows it. For example, in the command `delete i/S1234567A`, `i/` is the prefix for the NRIC parameter.
+
+### Details of Patient Parameters
+The table below provides a brief explanation of each parameter associated with a patient in MediBase3. It also details
+the constraints of each parameter when used in a command.
+
+Parameter | Definition                                                                                                 | Constraints
+---- |------------------------------------------------------------------------------------------------------------| ----------
+Name | Name of the patient                                                                                        | Must only contain alphanumeric characters and spaces. Cannot be empty.
+NRIC | Singapore National Registration Identity Card (NRIC) number of the patient. It is unique for all patients. | Should start with a letter (S, F, G or M), followed by 7 digits, and end with a letter. Cannot be empty and it is case-insensitive. 
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Command summary
 
